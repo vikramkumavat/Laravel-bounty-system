@@ -2,6 +2,9 @@ version: '3.8'
 services:
   app:
     image: php:8.2-fpm
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     container_name: app
     working_dir: /var/www
     volumes:
@@ -18,7 +21,7 @@ services:
       - .:/var/www
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - "8082:80"
+      - "8000:80"
     networks:
       - app-network
   mysql:
